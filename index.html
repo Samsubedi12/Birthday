@@ -1,0 +1,397 @@
+<!-- Main HTML document for the birthday page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta and title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoCcTjA8I2eVPZlUfNA8T9J/lW1tGjD8jY2+H+h8="
+        crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="scroll-progress"></div>
+    <div id="page-loader"><div class="loader"></div></div>
+    <!-- PIN overlay for secret code entry -->
+    <div id="pin-overlay">
+        <h2>Enter the Secret Code!</h2>
+        <p id="pin-hint">Hint: It's the number of days you are  older than me 😉</p>
+        <input type="number" id="pin-input" placeholder="Your guess...">
+        <button id="pin-submit-btn">Unlock My Love!</button>
+        <p id="pin-error-message">Nope! Try again, my clever PUKULI!</p>
+    </div>
+
+    <!-- Hero banner with confetti and balloons -->
+    <header class="hero-banner">
+        <h1>Happy Birthday ROJINA (PUKULI)!</h1>
+        <div class="confetti-balloons">
+            </div>
+        <div class="love-cringe-clings">
+            </div>
+    </header>
+
+    <main>
+        <!-- Audio section for background music -->
+        <section class="audio-section section-reveal">
+            <h2>Our Melody</h2>
+            <div id="audio-player-container">
+                <audio id="background-audio" loop>
+                    <source src="song.m4a" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+                <button id="play-pause-btn" aria-label="Play or pause our song">Play Our Song 🎶</button>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" aria-label="Volume slider">
+                <span>Volume</span>
+            </div>
+        </section>
+
+        <!-- Special message section -->
+        <section class="message-section section-reveal">
+            <h2>My Special Message For You</h2>
+            <div class="message-box">
+                <p class="slow-typewriter">
+                    My dearest Rojina, from the moment our paths crossed, my world became infinitely brighter.
+                     Every laugh, every quiet moment, every adventure – they are all treasures I hold dear.
+                      You inspire me, challenge me, and make me feel like the luckiest person alive.
+                       On your birthday, I want to celebrate not just the amazing person you are today, but the
+                          incredible journey we've embarked on and all the beautiful moments yet to come. You mean
+                           everything to me. Happy Birthday, my love! ❤️
+                </p>
+                </div>
+        </section>
+
+        <!-- Love meter section -->
+        <section class="love-meter-section section-reveal">
+            <h2>How Much I Love You!</h2>
+            <div class="love-meter-container">
+                <div class="love-meter-fill" id="loveMeterFill"></div>
+            </div>
+            <p class="love-meter-message" id="loveMeterMessage">Just a little bit... (kidding!)</p>
+        </section>
+
+        <!-- Love reasons bubbles section -->
+        <section class="love-reasons-section section-reveal">
+            <h2>ROJI Here's Why I Love You!</h2>
+            <p>Click on the bubbles to reveal a special reason!</p>
+            <div class="love-reasons-grid">
+                <div class="reason-bubble" data-reason="Your infectious laugh." aria-label="Reveal reason">😁</div>
+                <div class="reason-bubble" data-reason="Your kindness to everyone." aria-label="Reveal reason">💖</div>
+                <div class="reason-bubble" data-reason="Your amazing cooking(which i still haven't tried yet!)" aria-label="Reveal reason">😋</div>
+                <div class="reason-bubble" data-reason="Your adventurous spirit." aria-label="Reveal reason">🗺️</div>
+                <div class="reason-bubble" data-reason="The way you light up a room." aria-label="Reveal reason">✨</div>
+                <div class="reason-bubble" data-reason="Your brilliant mind." aria-label="Reveal reason">🧠</div>
+                <div class="reason-bubble" data-reason="Our inside jokes." aria-label="Reveal reason">😂</div>
+                <div class="reason-bubble" data-reason="Your comforting hugs." aria-label="Reveal reason">🤗</div>
+                <div class="reason-bubble" data-reason="You're just... YOU!" aria-label="Reveal reason">🌟</div>
+                </div>
+        </section>
+
+        <!-- Video section for birthday video -->
+        <section class="video-section section-reveal">
+            <h2>A Video Just For You</h2>
+            <div class="video-container">
+                <video controls preload="metadata" poster="https://via.placeholder.com/400x700/DDA0DD/FFFFFF?text=Video+Thumbnail">
+                    <source src="video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <!-- Circular Carousel Photo Gallery -->
+        <section id="elliptical-carousel-section" class="section-reveal">
+            <h2>Our Magical Moments</h2>
+            <div class="elliptical-carousel" id="ellipticalCarousel">
+                <button class="carousel-arrow left" id="carouselLeft" aria-label="Previous photo">&#8592;</button>
+                <div class="carousel-track">
+                    <div class="carousel-photo" data-caption="How It Started"><img src="moments/first.jpg" alt="How It Started"></div>
+                    <div class="carousel-photo" data-caption="First Photo"><img src="moments/second.jpg" alt="First Photo"></div>
+                    <div class="carousel-photo" data-caption="First Date"><img src="moments/third.jpg" alt="First Date"></div>
+                    <div class="carousel-photo" data-caption="Last Photo  before LDR"><img src="moments/fourth.jpg" alt="Last Photo  before LDR"></div>
+                    <div class="carousel-photo" data-caption="Welcome To LDR"><img src="moments/fifth.jpg" alt="Welcome To LDR"></div>
+                    <div class="carousel-photo" data-caption="Reunion After 2 Year"><video src="moments/sixth.mp4" alt="Reunion After 2 Year" controls></video></div>
+                    <div class="carousel-photo" data-caption="A long Waited Late Night Walk"><img src="moments/seven.jpg" alt="A long Waited Late Night Walk"></div>
+                    <div class="carousel-photo" data-caption="yaha hum pighal gaye"><video src="moments/eight.mp4" alt="yaha hum pighal gaye" controls></video></div>
+                    <div class="carousel-photo" data-caption="I LOVE YOU THE MOST"><img src="moments/nine.jpg" alt="I LOVE YOU THE MOST "></div>
+                    <div class="carousel-photo" data-caption="How You Fall For ME"><video src="moments/ten.mp4" alt="How You Fall For ME" controls></video></div>
+                    <div class="carousel-photo" data-caption="UMMHAAAHHHH"><video src="moments/11.mp4" alt="UMMHAAAHHHH" controls></video></div>
+                    
+                    <div class="carousel-photo" data-caption="Sart Of LDR Again"><img src="moments/12.jpg" alt="Sart Of LDR Again"></div>
+                </div>
+                <button class="carousel-arrow right" id="carouselRight" aria-label="Next photo">&#8594;</button>
+            </div>
+        </section>
+
+        <!-- Photo gallery section with filters -->
+        <section class="gallery-section section-reveal">
+            <h2>Our Journey in Photos</h2>
+            <div id="star-rating" aria-label="Rate your favorite memory"></div>
+            <div class="filter-buttons">
+                <button data-filter="all" class="active">All Memories</button>
+                <button data-filter="love">❤️ Love</button>
+                <button data-filter="fun">😂 Fun</button>
+                <button data-filter="travel">🗺️ Travel</button>
+                </div>
+            <div class="dynamic-photo-grid" id="dynamicPhotoGrid">
+                </div>
+        </section>
+
+        <!-- Lightbox overlay for gallery images -->
+        <div class="lightbox-overlay" id="lightboxOverlay">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <div class="lightbox-content">
+                <img src="" alt="" id="lightboxImage">
+                <p class="lightbox-description" id="lightboxDescription"></p>
+                </div>
+        </div>
+
+        
+
+        <!-- Dream board section with draggable stickers -->
+        <section id="dream-board-section" class="section-reveal">
+            <h2>Your Dreams for the Coming Year!</h2>
+            <p>Drag your dreams onto the board below, and add a note!</p>
+            <div class="sticker-palette" id="stickerPalette">
+                </div>
+            <div id="dream-board-area">
+                <p style="color: #bbb;">Drag stickers here!</p>
+            </div>
+        </section>
+
+        <!-- Birthday game section -->
+        <section class="game-section section-reveal">
+            <h2>A Little Birthday Game For You!</h2>
+            <p>Catch as many falling birthday wishes and gifts as you can!</p>
+            <div class="game-area" id="gameArea">
+                <div class="basket" id="basket"></div>
+                <div class="game-overlay" id="gameOverlay">
+                    <h3 id="overlayMessage">Ready to play?</h3>
+                    <button class="game-start-btn" id="startGameBtn" aria-label="Start the birthday game">Start Game!</button>
+                </div>
+            </div>
+            <div class="game-info">
+                <span>Score: <span id="score">0</span></span>
+                <span>Time: <span id="time">30</span>s</span>
+            </div>
+        </section>
+
+        <!-- Gift box section -->
+        <section class="gift-section section-reveal">
+            <h2>Your Special Birthday Gift!</h2>
+            <p>Go ahead, open it!</p>
+            <div class="gift-box" id="giftBox"></div>
+            <button class="open-gift-btn" id="openGiftBtn">Open Gift</button>
+            <div class="gift-content hidden" id="giftContent">
+                <p>Surprise! My biggest gift to you is all my love, wrapped up in this page! <br></p>
+                </div>
+        </section>
+
+        <!-- Friends' wishes flip cards section -->
+        <section class="friends-wishes-section section-reveal">
+            <h2>Wishes From Your Amazing Friends</h2>
+            <div class="wishes-grid">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/eva.jpg" alt="Friend 4 placeholder">
+                            <h3>eva</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>"Happpppiesttt Birthdayyy Bhuntss 💘💘
+                                I love you to the moooon and back 🌙💫 Words could never
+                                 capture how grateful I am to have you in my life , my best friend,
+                                  my big-sis-like soulmate, my forever cheerleader 🫂
+                                Thank you for always being there whenever I needed🥺
+                                I miss you soonmuchh and hope we will meet sooooon!
+                                Love you LOTS 🩷🎂"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/rachana.jpg" alt="Friend 4 placeholder">
+                            <h3>Rachana</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>"Happy birthday to my soul sister 🎂 🥳 
+                                 my personal therapist and my all time favourite human. 
+                                  Thank you for always being there ,hyping me up and loving 
+                                  me through all my mood . Loveeyouuu 😙💖"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/rejina.jpg" alt="Rejina smiling, friend of Rojina">
+                            <h3>Rejina</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>"Happy birthday parii ♥️
+                                Wishing you very happy and healthy life ahead 
+                                Thank you for always being there for me 
+                                 I'm always grateful to have you in my life 😙♥️
+                                Love you 
+                                And Wishing you all the happiness in the world ♥️♥️"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/sara.jpg" alt="Friend 4 placeholder">
+                            <h3>sara</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>"Happiest birthdayyy roji (dallu)didi hope you will have a great one . 
+                                I am gonna miss my walking +gossip partner a lot  when you will not be in Nepal☹️ .
+                                 Congrats on being budi🫣🎉🥳"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/supriya.jpg" alt="Friend 4 placeholder">
+                            <h3>supriya</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>" Wishing you the happiest of birthday, Rojina ❤️😘😘.I just want 
+                                to tell you how truly grateful I am to have you in my life. You're
+                                 not just a friend, you are family to me. I miss you so much 🥹 and
+                                  I honestly can't wait for the day we finally get to see each other
+                                   again, hopefully this year in Australia. Just the thought of seeing
+                                    you in person and going on matcha dates🍵 with you makes me so happy. 
+                                    You've been more than just a friend….you've been a constant light, a 
+                                    safe space, and someone I can always count on. Thank you from the bottom 
+                                    of my heart for always checking in on me, for being there during my highs
+                                     and lows, and for showing me what real friendship feels like. I love you
+                                      so, so much. Please never forget that I'll always be there for you. 
+                                      Through everything ……good days, bad days, anything, you'll always
+                                       have me by your side. Happy Birthday, my beautiful best friend,
+                                        my sister by heart. May this year bring you all the happiness,
+                                         peace, and love you deserve. ❤️"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/pawana.jpg" alt="Friend 4 placeholder">
+                            <h3>pawana</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>"Happy Birthday Roju🎂🥳❤️. Wishing you the day filled with joy and happiness .
+                                 I wish u nth but the best for you. I am so grateful for our friendship. I
+                                  still remember & miss those days when we always used to hang out together
+                                  in school and even at homes. It feels just like yesterday. And now, though we 
+                                  don't get to talk daily but I always miss you and love you 😚❤️. Once again 
+                                  happiest birthday. God bless you. Have fun 🤩 rojupoju 
+
+                                Yours loving friend 
+                                Paws"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/saloni.jpg" alt="Saloni, friend of Rojina">
+                            <h3>Saloni</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Happy birthday to my love🫶
+                                Sadhai khushi sukhi rakhanu 
+                                Chadai visa lagos🤭❤️</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/prativa.jpg" alt="Prativa, friend of Rojina">
+                            <h3>Prativa</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>"Happy Birthday! Cheers to another year of amazing memories and adventures.
+                                 So glad to have you in my life!"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/krisha.jpg" alt="Prativa, friend of Rojina">
+                            <h3>krisha</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>"From being those carefree kids in school to slowly growing 
+                                up(still feels unreal sometimes), it's been so beautiful watching us 
+                                evolve into the people we are today. You've always been there — through 
+                                every chapter, breakdown. You are my school life. And I truly hope this
+                                 friendship lasts forever and beyond.Cheers to your day, your glow-up, and 
+                                 all the amazing things coming your way! Love you loads! 💫❤️Happy Birthday, Babygirl! 🎉💖"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/anjali.jpg" alt="Friend 4 placeholder">
+                            <h3>anjali</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>" Happiest Birthday Ms Nepal❤ Stay as preety and cutie putie as always😌
+                                Don't know how fast the time flies butThankyou for tolerating me those four
+                                 years🫶 and memories of us will always remains in my heart❤ Khyal rakhnu aafno🌸❤
+                                 Loveyouuuuu🧿🙆‍♀️"</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="wish/amit.jpg" alt="Friend 4 placeholder">
+                            <h3>amit</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>"
+                                Happy birthdayy Miss Nepal💗 May god bless you with lots of happiness, 
+                                success and healthy lifeee. Lots of love and grateful for your friendship ❤️🤗
+                                 I hope this year brings you closer to your dreams ✨🌸"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div id="end-message" style="display:none;"></div>
+        <p>&copy; 2025 Happy Birthday! Made with ❤️ by Your PUKULE</p>
+    </footer>
+
+    <!-- Fun cursor effects -->
+    <div class="cursor-follower"></div>
+    <div class="cursor-text-follower">You're stuck with me! 😉</div>
+
+    <!-- External JS libraries and main script -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjGwYFYF/yigXtJSygeK6li4Res+o9s+yY="
+        crossorigin=""></script>
+    <script src="script.js"></script>
+
+    <!-- Fireworks Canvas (hidden by default, shown on trigger) -->
+    <canvas id="fireworks-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:2000;display:none;"></canvas>
+    <!-- Animated Pet (e.g., a cute cat) -->
+    <div id="animated-pet" style="position:fixed;bottom:20px;right:20px;z-index:2001;cursor:pointer;"></div>
+    <div id="balloon-container"></div>
+</body>
+</html>
